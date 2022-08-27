@@ -76,7 +76,7 @@ function showBookInLibrary() {
 
         //book remove
         const bookRemove = document.createElement('td');
-        bookRemove.classList.add('btn', 'removeBtn');
+        bookRemove.classList.add('btn');
         bookRemove.textContent = 'remove';
         bookRow.appendChild(bookRemove);
     }
@@ -92,37 +92,11 @@ function addBookToLibrary(title ,author ,pages ,status){
     const titleInput = document.getElementById('title');
     const inputAuthor = document.getElementById('author');
     const inputPages = document.getElementById('pages');
-    const status = document.getElementById('status');
+    const status = document.getElementById('stats');
     const tableBody = document.getElementById('book-table-body');
     const addBookForm = document.getElementById('addBookForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary(titleInput.value, inputAuthor.value, inputPages.value, status.value);
-    addBookForm.reset();
-    });
+    addBookToLibrary();})
 
-
-// function clickInput() {
-//     document.addEventListener('click', (e) => {
-//         const target = e;
-//         const tr = target.parentNode.parentNode.rowIndex - 1;
-//         if (target.id === 'addBookForm') {
-//             addBookToLibrary(titleInput.value, inputAuthor.value, inputPages.value, status.value);
-//     addBookForm.reset();
-
-//          if (target.classList.contains ('removeBtn')) {
-//             myLibrary.splice(tr, 1);
-//         } else if (target.classList.contains ('read')) {
-//             target.classList.remove('read');
-//             target.classList.add('btn-red');
-//         } else if (target.classList.contains ('btn-red')) {
-//             target.classList.remove('btn-red');
-//             target.classList.add('read');
-//     }
-//     showBookInLibrary();
-// });
-// }
-
-// showBookInLibrary();
-// clickInput();
 
     
