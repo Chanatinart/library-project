@@ -29,99 +29,72 @@ window.addEventListener("click", function(e){
 
 
 
+// get book from local storage
+if (localStorage.getItem('books')=== null) {
+    myLibrary = [];
+} else {
+    const booksFromStorage = JSON.parse(localStorage.getItem('books'));
+    myLibrary = booksFromStorage;
+}
+
+function showBookInLibrary() {
+    localStorage.setItem('books', JSON.stringify(myLibrary));
+    const bookList = document.querySelector('#book-table-body');
+    bookList.textContent = '';
+    for (let i = 0; i < myLibrary.length; i+= 1) {
+        const bookRow = document.createElement('tr');
+        bookRow.classList.add('book-info');
+        bookList.appendChild('bookRow');
+
+        //book title
+        const bookTitle = document.createElement('td');
+        bookTitle.textContent = myLibrary[i].title;
+        bookRow.appendChild('bookTitle');
+
+        //book author
+       const bookAuthor = document.createElement('td');
+        bookAuthor.textContent = myLibrary[i].author;
+        bookRow.appendChild('bookAuthor');
+
+        //book pages
+        const bookPages = document.createElement('td');
+        bookPages.textContent = myLibrary[i].pages;
+        bookRow.appendChild('bookPages');
+
+        //book status
+        const bookStatus = document.createElement('td');
+        if (myLibrary.status === false) {
+            bookStatus.textContent = 'read'
+        } else {
+            bookStatus.textContent = 'Not read'
+        }
+        bookRow.appendChild(bookStatus);
+
+        //book remove
+        const bookRemove = document.createElement('td');
+
+
+
+
+    }
+}
+
+function addBookToLibrary(title ,author ,pages ,status){
+    const book = new Book(title ,author ,pages ,status);
+    myLibrary.push(book);
+    showBookInLibrary();
+}
+
+//form
+
     const titleInput = document.getElementById('title');
     const inputAuthor = document.getElementById('author');
     const inputPages = document.getElementById('pages');
-    const status = document.getElementById('status');
+    const status = document.getElementById('isRead');
     const tableBody = document.getElementById('book-table-body');
     const addBookForm = document.getElementById('addBookForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary();
-    reader();
-    clearForm();
-});
-
-const table =  document.querySelector("table").addEventListener("click", (e) => {
-    const currentTarget = e.target.parentNode.parentNode.childNodes[1];
-    if (e.target.innerHTML === "delete") {
-        if (confirm(`are you sure you want to delete ${currentTarget.innerText}`))
-        deleteBook(findBook(myLibrary,currentTarget.innerText));
-    }
-    if (e.target.classList.contains("status-button")){
-        changeStatus(findBook(myLibrary, currentTarget.innerText));
-    }
-    updateLocalStorage();
-    reader();
-});
+    addBookToLibrary();})
 
 
-function addBookToLibrary() {
-    if (title.value.length === 0 || author.value.length === 0) {
-        alert("Please, fill all the fields");
-        return;
-    }
-
-    const newBook = new Book(title.value, author.value, pages.value, status.value);
-
-    myLibrary.push(newBook);
-    updateLocalStorage();
-}
-
-function changeStatus(book) {
-    if (myLibrary[book].status === "read"){
-        myLibrary[book].status = "not read";
-    } else myLibrary[book].status = "read";
-}
-
-function deleteBook(currentBook) {
-    myLibrary.splice(currentBook, currentBook + 1);
-}
-
-function findBook(myLibraryArray, title) {
-    if (myLibraryArray.length === 0 || myLibraryArray === null) {
-        return;
-    }
-    for (book of myLibraryArray)
-    if (book.title === title) {
-        return myLibraryArray.indexOf(book);
-    }
-}
-
-function clearForm() {
-    title.value = "";
-    author.value = "";
-}
-
-// get book from local storage
-
-function updateLocalStorage() {
-    localStorage.getItem('myLibrary', JSON.stringify(myLibrary));
-}
-
-function checkLocalStorage() {
-    if (localStorage.getItem('myLibrary')) {
-        myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-    } else {
-        myLibrary = '';
-    }
-}
-
-function reader() {
-    checkLocalStorage();
-    tableBody.innerHTML = '';
-    myLibrary.forEach((book) => {
-        const htmlBook = `
-        <tr>
-        <td>${book.title}</td>
-        <td>${book.author}</td>
-        <td>{book.pages}</td>
-        <td><button class = "status-button">${book.status}</button></td>
-        <td><button class = "delete">delete</button></td>
-        </tr>
-        `;
-        tableBody.insertAdjacentHTML('afterbegin', htmlBook);
-    });
-}
-
-reader();
     
