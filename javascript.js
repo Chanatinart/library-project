@@ -27,7 +27,17 @@ window.addEventListener("click", function(e){
     }
 });
 
+//close modal
+const closeAddBookModal = () => {
+    addBookModal.style.display = "none";
+}
 
+const resetBook = () => {
+    titleInput.value = ''; 
+    inputAuthor.value = ''; 
+    inputPages.value = ''; 
+    status.checked = '';
+}
 
 // get book from local storage
 if (localStorage.getItem('books')=== null) {
@@ -65,18 +75,20 @@ function showBookInLibrary() {
 
         //book status
         const bookStatus = document.createElement('td');
-        if (bookStatus.textContent = 'read') { 
-            bookStatus.classList.add('btn-green')
+        const readBtn = document.createElement('button');
+        if (readBtn.textContent = 'read') { 
+            readBtn.classList.add('btn-green')
 
         } else {
-            bookStatus.textContent = 'Not read'
-            bookStatus.classList.add('btn-red')
+            readBtn.textContent = 'Not read'
+            readBtn.classList.add('btn-red')
         }
+        bookStatus.appendChild(readBtn);
         bookRow.appendChild(bookStatus);
 
         //book remove
         const bookRemove = document.createElement('td');
-        bookRemove.classList.add('btn');
+        bookRemove.classList.add('btn', 'removeBtn');
         bookRemove.textContent = 'remove';
         bookRow.appendChild(bookRemove);
     }
@@ -88,15 +100,41 @@ function addBookToLibrary(title ,author ,pages ,status){
     showBookInLibrary();
 }
 
+
 //form
     const titleInput = document.getElementById('title');
     const inputAuthor = document.getElementById('author');
     const inputPages = document.getElementById('pages');
-    const status = document.getElementById('stats');
+    const status = document.getElementById('isRead');
     const tableBody = document.getElementById('book-table-body');
     const addBookForm = document.getElementById('addBookForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary();})
+    addBookToLibrary(titleInput.value, inputAuthor.value, inputPages.value, status.value);
+    resetBook();
+    closeAddBookModal();
+    });
 
 
+
+function clickInput() {
+    document.addEventListener('click', (e) => {
+        const target = e
+        const tr = e.target.parentNode.parentNode.rowIndex -1;
+         if (e.target.classList.contains('removeBtn')) {
+            myLibrary.splice(tr, 1);
+        } else if (e.target.classList.contains ('btn-green')) {
+            e.target.classList.remove('btn-green');
+            e.target.classList.add('btn-red');
+            myLibrary[tr].status = false;
+        } else if (e.target.classList.contains ('btn-red')) {
+            e.target.classList.remove('btn-red');
+            e.target.classList.add('btn-green');
+            myLibrary[tr].status = true;
+    }
+    showBookInLibrary();
+});
+}
+
+showBookInLibrary();
+clickInput();
     

@@ -68,18 +68,14 @@
       <form class="add-book-form" id="addBookForm">
         <h3>Add new book</h3>
         <input type="text" class="input" id="title" placeholder="Title" required maxlength="100">
-        <p class="error-msg" id="errorMsg"></p>
 
         <input type="text" class="input" id="author" placeholder="Author" required maxlength="100">
 
         <input type="number" class="input" id="pages" placeholder="Pages" required max="10000">
 
         <div class="is-read">
-          <label for="status">Status</label>
-          <select name="status" id="status">
-          <option value="read">Read</option>
-          <option value="not read">Not read</option>
-          </select>
+          <label for="is-read">Have you read it?</label>
+          <input type="checkbox" id="isRead">
         </div>
         <button class="submitBtn" type="submit">Submit</button>
       </form>
