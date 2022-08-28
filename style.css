@@ -1,0 +1,237 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    --brand-color: #FF506E;
+    --dark-color: #1E293B;
+    --mid-color: #475569;
+    --light-color: #F1F5F9;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 1px 5px;
+}
+
+
+body {
+    background-color: var(--light-color);
+    font-size: 18px;
+    font-weight: 500;
+}
+/* header */
+
+header {
+    background-color: var(--brand-color);
+    display: flex;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+}
+
+h1 {
+    color: var(--dark-color);
+}
+
+.logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5px;
+}
+
+img[src="pic/books.png"] {
+    height: 32px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-box {
+    width: 100%;
+    border: 3px solid var(--brand-color);
+    padding: 5px;
+    height: 28px;
+    border-radius: 20px;
+    outline: none;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+}
+
+.btn {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid var(--dark-color);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+/* content */
+
+.addBtn {
+        background-color: var(--dark-color);
+        color: var(--light-color);
+        font-size: 24px;
+        font-weight: bolder;
+        border: 2px solid var(--dark-color);
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 5px 15px;
+}
+
+.addContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn:hover, 
+.addBtn:hover {
+    filter: brightness(90%);
+}
+ /* table */
+
+th,
+td {
+    padding: 12px 50px;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+th:first-child,
+td:first-child {
+    padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 0;
+}
+
+.table {
+    justify-content: center;
+    display: flex;
+    margin: 20px;
+}
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background-color: var(--brand-color);
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 50%;
+    height: 300px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: var(--mid-color);
+    text-align: center;
+}
+
+.modal h3, 
+label[for="is-read"] {
+    color: white;
+    font-weight: bold;
+}
+
+.add-book-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-book-form button {
+    width: 100%;
+}
+
+.btn-green {
+    background-color: lightgreen;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bolder;
+    border: 2px solid lightgreen;
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 5px 0px;
+    width: 50px;
+}
+
+.removeBtn {
+    background-color: crimson;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bolder;
+    border: 2px solid crimson;
+    cursor: pointer;
+    font-weight: bolder;
+    width: 60px;
+    color: white;
+}
+
+.btn-red {
+    background-color: rgb(228, 83, 83);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bolder;
+    border: 2px solid rgb(228, 83, 83);
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 5px 0px;
+    width: 50px;
+}
+
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--dark-color)
+}
+
+.is-read {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    accent-color: white;
+}
+
+.submitBtn {
+    background: var(--brand-color);
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bolder;
+    border: 2px solid var(--dark-color);
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 10px 0px;
+}
+
+
+
